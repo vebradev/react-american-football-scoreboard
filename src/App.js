@@ -9,23 +9,33 @@ function App() {
   const [awayScore, setAwayScore] = useState(5);
 
   // home helpers
-  const homeTouchdown = () => {
-    setHomeScore(homeScore + 7);
-  }
-  const homeFieldGoal = () => {
-    setHomeScore(homeScore + 3);
-  }
+  // const homeTouchdown = () => {
+  //   setHomeScore(homeScore + 7);
+  // }
+  // const homeFieldGoal = () => {
+  //   setHomeScore(homeScore + 3);
+  // }
 
-  // away helpers
-  const awayTouchdown = () => {
-    setAwayScore(awayScore + 7);
-  }
-  const awayFieldGoal = () => {
-    setAwayScore(awayScore + 3);
+  // // away helpers
+  // const awayTouchdown = () => {
+  //   setAwayScore(awayScore + 7);
+  // }
+  // const awayFieldGoal = () => {
+  //   setAwayScore(awayScore + 3);
+  // }
+
+  // stretch: handler function
+
+ const handler = (name, score) => {
+    if(name === "Lions") {
+      setHomeScore(homeScore + score);
+    } else if(name === "Tigers") {
+      setAwayScore(awayScore + score);
+    }
   }
 
   return (
-    <div className="container">
+    <>
       <section className="scoreboard">
         <div className="topRow">
           <div className="home">
@@ -46,15 +56,15 @@ function App() {
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown" onClick={homeTouchdown}>Home Touchdown</button>
-          <button className="homeButtons__fieldGoal" onClick={homeFieldGoal}>Home Field Goal</button>
+          <button className="homeButtons__touchdown" onClick={() => handler("Lions", 7)}>Home Touchdown</button>
+          <button className="homeButtons__fieldGoal" onClick={() => handler("Lions", 3)}>Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={awayTouchdown}>Away Touchdown</button>
-          <button className="awayButtons__fieldGoal" onClick={awayFieldGoal}>Away Field Goal</button>
+          <button className="awayButtons__touchdown" onClick={() => handler("Tigers", 7)}>Away Touchdown</button>
+          <button className="awayButtons__fieldGoal" onClick={() => handler("Tigers", 3)}>Away Field Goal</button>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 
